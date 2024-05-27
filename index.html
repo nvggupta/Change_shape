@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shape and Color Changer</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        background-color: rgb(176, 150, 112);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        height: 350px;
+        width: 350px;
+        background-color: #fff;
+        border-radius: 20px;
+        box-shadow: 0 0 15px 10px rgb(121, 110, 110);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .outer {
+        height: 40%;
+        width: 40%;
+        background-color: aquamarine;
+        border-radius: 50%;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .oval,
+      .circle,
+      .rectangle,
+      .trapezoid,
+      .square,
+      .parallelogram,
+      .triangle-up,
+      .triangle-down,
+      .triangle-left,
+      .triangle-right {
+        display: none;
+      }
+      .oval {
+        height: 50px;
+        width: 100px;
+        background-color: #555;
+        border-radius: 50%;
+      }
+      .circle {
+        height: 50px;
+        width: 50px;
+        background-color: #555;
+        border-radius: 50%;
+      }
+      .rectangle {
+        height: 50px;
+        width: 100px;
+        background-color: #555;
+      }
+      .trapezoid {
+        border-bottom: 50px solid #555;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        height: 0;
+        width: 125px;
+      }
+      .square {
+        height: 70px;
+        width: 70px;
+        background-color: #ffffff;
+      }
+      .parallelogram {
+        width: 100px;
+        height: 50px;
+        transform: skew(20deg);
+        background: #555;
+      }
+      .triangle-up {
+        width: 0;
+        height: 0;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-bottom: 50px solid #555;
+      }
+      .triangle-down {
+        width: 0;
+        height: 0;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-top: 50px solid #555;
+      }
+      .triangle-left {
+        width: 0;
+        height: 0;
+        border-top: 25px solid transparent;
+        border-right: 50px solid #555;
+        border-bottom: 25px solid transparent;
+      }
+      .triangle-right {
+        width: 0;
+        height: 0;
+        border-top: 25px solid transparent;
+        border-left: 50px solid #555;
+        border-bottom: 25px solid transparent;
+      }
+      .btn {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 50px;
+      }
+      button {
+        border: none;
+        color: white;
+        padding: 15px;
+        border-radius: 20px;
+        width: 150px;
+        background-color: #131111;
+        cursor: pointer;
+      }
+      button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 2px 2px 1px gray;
+        transition: all 0.2s ease-in;
+      }
+      button:active {
+        transform: translateY(1px);
+        transition: all 0.2s ease-in;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="outer" class="outer">
+        <div id="shape">
+          <div class="oval"></div>
+          <div class="circle"></div>
+          <div class="rectangle"></div>
+          <div class="trapezoid"></div>
+          <div class="square"></div>
+          <div class="parallelogram"></div>
+          <div class="triangle-up"></div>
+          <div class="triangle-down"></div>
+          <div class="triangle-left"></div>
+          <div class="triangle-right"></div>
+        </div>
+      </div>
+      <div class="btn">
+        <button id="change_Color">Change Color</button>
+        <button id="change_shape">Change Shape</button>
+      </div>
+    </div>
+    <script>
+      const changeColor = document.getElementById("change_Color");
+      const changeShape = document.getElementById("change_shape");
+      const shape = document.getElementById("shape").children;
+      const outer = document.getElementById("outer");
+      changeColor.addEventListener("click", () => {
+        let color = "#";
+        const Alphabet = "0123456789abcdefABCDEF";
+        for (let i = 1; i <= 6; i++) {
+          color += Alphabet[Math.floor(Math.random() * 22)];
+        }
+        console.log(color);
+        outer.style.backgroundColor = color;
+      });
+
+      const shape_Arr = Object.values(shape);
+      changeShape.addEventListener("click", () => {
+        let x = Math.floor(Math.random() * 10);
+        for (let i = 0; i < shape_Arr.length; i++) {
+          if (i === x) {
+            shape_Arr[i].style.display = "block";
+          } else {
+            shape_Arr[i].style.display = "none";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
